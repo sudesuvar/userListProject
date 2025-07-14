@@ -9,11 +9,13 @@ import Foundation
 
 final class UserListViewModel: ObservableObject {
     
+    @Published var users: [UserModel]?
+    
     func getUsers() async {
         
         do {
             let users = try await WebService.getUsersData()
-            print(users)
+            self.users = users
         }catch(let error){
             print(error.localizedDescription)
         }
